@@ -13,15 +13,34 @@ import spark.template.mustache.MustacheTemplateEngine;
 
 public class App
 {
-    public static boolean search(ArrayList<Integer> array, int e) {
-      System.out.println("inside search");
-      if (array == null) return false;
-
-      for (int elt : array) {
-        if (elt == e) return true;
+	//Search metodunu kullanmadığım için sildim
+    public static boolean indexEqual(ArrayList<Integer> array1, ArrayList<Integer> array2, int e1, int e2) {
+      //Check if element's are exist in array and if exist are their index's are equal.(if there is 2 of them check first one)
+      System.out.println("index Equal");
+      if (array1 == null) return false;
+      if (array2 == null) return false;
+      int count1 = 0;
+      int count2 = 0;
+      boolean exist1 = false;
+      boolean exist2 = false;
+      for (int elt : array1) {
+      	count1++;
+        if (elt == e1) {
+        	exist1 = true;
+        	break;
+        }
       }
-      return false;
+      for (int elt : array2) {
+      	count2++;
+        if (elt == e2) {
+        	exist2 = true;
+        	break;
+        }
+      }
+
+      return ( exist1 & exist2 & (count1 == count2) );
     }
+
  public static void main(String[] args) {
         port(getHerokuAssignedPort());
 
@@ -46,7 +65,24 @@ public class App
           String input2 = req.queryParams("input2").replaceAll("\\s","");
           int input2AsInt = Integer.parseInt(input2);
 
-          boolean result = App.search(inputList, input2AsInt);
+
+          //Burada 2. array listi alir
+          String input3 = req.queryParams("input3");
+          java.util.Scanner sc3 = new java.util.Scanner(input3);
+          sc3.useDelimiter("[;\r\n]+");
+          java.util.ArrayList<Integer> inputList3 = new java.util.ArrayList<>();
+          while (sc3.hasNext())
+          {
+            int value = Integer.parseInt(sc3.next().replaceAll("\\s",""));
+            inputList3.add(value);
+          }
+
+          //Burada 2. sayiyi alir
+          String input4 = req.queryParams("input4").replaceAll("\\s","");
+          int input4AsInt = Integer.parseInt(input4);
+
+
+          boolean result = App.indexEqual(inputList,inputList3,input2AsInt,input4AsInt);
 
          Map map = new HashMap();
           map.put("result", result);

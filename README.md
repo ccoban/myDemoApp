@@ -1,2 +1,3 @@
 [![Build Status](https://travis-ci.org/ccoban/myDemoApp.svg?branch=master)](https://travis-ci.org/ccoban/myDemoApp)
 Demo site: https://mighty-shore-67261.herokuapp.com/
+ilk parametre olarak bir arratlist ve 2. parametre olarak bir integer alır.3. parametre olur başka bir arraylist ve 4. prametre olarak başka bir array alır. Eğer 1. arrayde 2. eleman varsa ve 3. arrayde 4. eleman varsa ve bunalrın ilk bulunduğu index eşit ise true basar. Değilse false basar
